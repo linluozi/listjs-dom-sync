@@ -1,0 +1,292 @@
+{
+  "label": "A",
+  "n": 2000,
+  "src": "E:\\WorkBuddy-Work\\WorkBuddy-0\\_fe_listjs\\arms\\A\\src\\index.js",
+  "initMs": 445.1173,
+  "initCounters": {
+    "appendChild": 0,
+    "appendChildToList": 0,
+    "removeChild": 0,
+    "removeChildFromList": 0,
+    "insertBefore": 0,
+    "insertBeforeToList": 0,
+    "replaceChild": 0,
+    "toLowerCase": 0,
+    "toLowerCaseChars": 0,
+    "getAttribute": 0,
+    "setAttribute": 0,
+    "classAdd": 0,
+    "classRemove": 0,
+    "classToggle": 0,
+    "innerHTMLSet": 0,
+    "valuesCalls": 0,
+    "naturalSortCalls": 0,
+    "alphabetSet": 0,
+    "createElement": 1
+  },
+  "finalDomChildren": 100,
+  "finalVisible": 100,
+  "steps": {
+    "search_a": {
+      "ms": 23.3935,
+      "delta": {
+        "appendChild": 0,
+        "appendChildToList": 0,
+        "removeChild": 0,
+        "removeChildFromList": 0,
+        "insertBefore": 0,
+        "insertBeforeToList": 0,
+        "replaceChild": 0,
+        "toLowerCase": 2001,
+        "toLowerCaseChars": 23801,
+        "getAttribute": 0,
+        "setAttribute": 0,
+        "classAdd": 0,
+        "classRemove": 4,
+        "classToggle": 0,
+        "innerHTMLSet": 0,
+        "valuesCalls": 2001,
+        "naturalSortCalls": 0,
+        "alphabetSet": 0,
+        "createElement": 0
+      },
+      "state": {
+        "visible": 2000,
+        "matching": 2000,
+        "domChildren": 2000
+      }
+    },
+    "search_an": {
+      "ms": 153.3283,
+      "delta": {
+        "appendChild": 0,
+        "appendChildToList": 0,
+        "removeChild": 1600,
+        "removeChildFromList": 1600,
+        "insertBefore": 0,
+        "insertBeforeToList": 0,
+        "replaceChild": 0,
+        "toLowerCase": 5401,
+        "toLowerCaseChars": 42402,
+        "getAttribute": 0,
+        "setAttribute": 0,
+        "classAdd": 0,
+        "classRemove": 4,
+        "classToggle": 0,
+        "innerHTMLSet": 0,
+        "valuesCalls": 5401,
+        "naturalSortCalls": 0,
+        "alphabetSet": 0,
+        "createElement": 0
+      },
+      "state": {
+        "visible": 400,
+        "matching": 400,
+        "domChildren": 400
+      }
+    },
+    "search_ann": {
+      "ms": 13.7997,
+      "delta": {
+        "appendChild": 0,
+        "appendChildToList": 0,
+        "removeChild": 400,
+        "removeChildFromList": 400,
+        "insertBefore": 0,
+        "insertBeforeToList": 0,
+        "replaceChild": 0,
+        "toLowerCase": 6001,
+        "toLowerCaseChars": 44603,
+        "getAttribute": 0,
+        "setAttribute": 0,
+        "classAdd": 0,
+        "classRemove": 4,
+        "classToggle": 0,
+        "innerHTMLSet": 0,
+        "valuesCalls": 6001,
+        "naturalSortCalls": 0,
+        "alphabetSet": 0,
+        "createElement": 0
+      },
+      "state": {
+        "visible": 0,
+        "matching": 0,
+        "domChildren": 0
+      }
+    },
+    "search_empty": {
+      "ms": 126.412,
+      "delta": {
+        "appendChild": 0,
+        "appendChildToList": 0,
+        "removeChild": 0,
+        "removeChildFromList": 0,
+        "insertBefore": 2000,
+        "insertBeforeToList": 2000,
+        "replaceChild": 0,
+        "toLowerCase": 1,
+        "toLowerCaseChars": 0,
+        "getAttribute": 0,
+        "setAttribute": 0,
+        "classAdd": 0,
+        "classRemove": 4,
+        "classToggle": 0,
+        "innerHTMLSet": 0,
+        "valuesCalls": 1,
+        "naturalSortCalls": 0,
+        "alphabetSet": 0,
+        "createElement": 0
+      },
+      "state": {
+        "visible": 2000,
+        "matching": 2000,
+        "domChildren": 2000
+      }
+    },
+    "sort_name": {
+      "ms": 866.4435,
+      "delta": {
+        "appendChild": 0,
+        "appendChildToList": 0,
+        "removeChild": 0,
+        "removeChildFromList": 0,
+        "insertBefore": 1796,
+        "insertBeforeToList": 1796,
+        "replaceChild": 0,
+        "toLowerCase": 27808,
+        "toLowerCaseChars": 332403,
+        "getAttribute": 3,
+        "setAttribute": 0,
+        "classAdd": 1,
+        "classRemove": 4,
+        "classToggle": 0,
+        "innerHTMLSet": 0,
+        "valuesCalls": 27808,
+        "naturalSortCalls": 0,
+        "alphabetSet": 13904,
+        "createElement": 0
+      },
+      "state": {
+        "visible": 2000,
+        "matching": 2000,
+        "domChildren": 2000
+      }
+    },
+    "sort_name_desc": {
+      "ms": 921.6154,
+      "delta": {
+        "appendChild": 0,
+        "appendChildToList": 0,
+        "removeChild": 0,
+        "removeChildFromList": 0,
+        "insertBefore": 1800,
+        "insertBeforeToList": 1800,
+        "replaceChild": 0,
+        "toLowerCase": 4458,
+        "toLowerCaseChars": 52949,
+        "getAttribute": 3,
+        "setAttribute": 0,
+        "classAdd": 1,
+        "classRemove": 4,
+        "classToggle": 0,
+        "innerHTMLSet": 0,
+        "valuesCalls": 4458,
+        "naturalSortCalls": 0,
+        "alphabetSet": 2229,
+        "createElement": 0
+      },
+      "state": {
+        "visible": 2000,
+        "matching": 2000,
+        "domChildren": 2000
+      }
+    },
+    "filter_city": {
+      "ms": 190.4509,
+      "delta": {
+        "appendChild": 0,
+        "appendChildToList": 0,
+        "removeChild": 1800,
+        "removeChildFromList": 1800,
+        "insertBefore": 0,
+        "insertBeforeToList": 0,
+        "replaceChild": 0,
+        "toLowerCase": 0,
+        "toLowerCaseChars": 0,
+        "getAttribute": 0,
+        "setAttribute": 0,
+        "classAdd": 0,
+        "classRemove": 4,
+        "classToggle": 0,
+        "innerHTMLSet": 0,
+        "valuesCalls": 2000,
+        "naturalSortCalls": 0,
+        "alphabetSet": 0,
+        "createElement": 0
+      },
+      "state": {
+        "visible": 200,
+        "matching": 200,
+        "domChildren": 200
+      }
+    },
+    "filter_none": {
+      "ms": 148.2219,
+      "delta": {
+        "appendChild": 0,
+        "appendChildToList": 0,
+        "removeChild": 0,
+        "removeChildFromList": 0,
+        "insertBefore": 1800,
+        "insertBeforeToList": 1800,
+        "replaceChild": 0,
+        "toLowerCase": 0,
+        "toLowerCaseChars": 0,
+        "getAttribute": 0,
+        "setAttribute": 0,
+        "classAdd": 0,
+        "classRemove": 4,
+        "classToggle": 0,
+        "innerHTMLSet": 0,
+        "valuesCalls": 0,
+        "naturalSortCalls": 0,
+        "alphabetSet": 0,
+        "createElement": 0
+      },
+      "state": {
+        "visible": 2000,
+        "matching": 2000,
+        "domChildren": 2000
+      }
+    },
+    "show_page": {
+      "ms": 143.4682,
+      "delta": {
+        "appendChild": 0,
+        "appendChildToList": 0,
+        "removeChild": 1900,
+        "removeChildFromList": 1900,
+        "insertBefore": 0,
+        "insertBeforeToList": 0,
+        "replaceChild": 0,
+        "toLowerCase": 0,
+        "toLowerCaseChars": 0,
+        "getAttribute": 0,
+        "setAttribute": 0,
+        "classAdd": 0,
+        "classRemove": 0,
+        "classToggle": 0,
+        "innerHTMLSet": 0,
+        "valuesCalls": 0,
+        "naturalSortCalls": 0,
+        "alphabetSet": 0,
+        "createElement": 0
+      },
+      "state": {
+        "visible": 100,
+        "matching": 2000,
+        "domChildren": 100
+      }
+    }
+  }
+}

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>list.js 列表渲染热路径优化</title>
+<style>
+  :root{
+    --bg:#171310; --panel:#1f1a15; --card:#241e18;
+    --ink:#f2e9dd; --ink-2:#c9b8a4; --muted:#8a7a68;
+    --amber:#d9a441; --terra:#c4643a; --olive:#8f8f5a;
+    --rule:#3a2f26;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:15px/1.75 -apple-system,"Segoe UI","Noto Sans SC",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:56px 28px 96px}
+  .eyebrow{
+    font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--amber); margin-bottom:18px;
+  }
+  h1{
+    font-family:Georgia,"Songti SC",serif; font-size:40px; line-height:1.2;
+    margin:0 0 14px; font-weight:600; letter-spacing:-.01em;
+  }
+  .sub{color:var(--ink-2); font-size:16px; max-width:64ch; margin:0 0 8px}
+  .meta{
+    display:flex; flex-wrap:wrap; gap:22px; margin:26px 0 0;
+    padding:16px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+    font-size:12.5px; color:var(--muted);
+  }
+  .meta b{color:var(--ink-2); font-weight:500}
+  h2{
+    font-family:Georgia,"Songti SC",serif; font-size:24px; font-weight:600;
+    margin:56px 0 8px; letter-spacing:-.005em;
+  }
+  h2 .num{color:var(--amber); font-size:15px; margin-right:10px; font-family:inherit}
+  h3{font-size:15px; margin:28px 0 8px; color:var(--ink)}
+  p{margin:10px 0; color:var(--ink-2); max-width:76ch}
+  .lead{color:var(--ink); font-size:16.5px}
+  code{
+    font-family:"JetBrains Mono",Consolas,monospace; font-size:12.5px;
+    background:#2b241d; padding:1px 5px; border-radius:3px; color:#e8c98a;
+  }
+  pre{
+    background:var(--panel); border:1px solid var(--rule); border-left:3px solid var(--terra);
+    padding:16px 18px; overflow-x:auto; font-size:12.5px; line-height:1.65;
+    font-family:"JetBrains Mono",Consolas,monospace; color:#d8c9b6; margin:16px 0;
+  }
+  pre .del{color:#c4643a}
+  pre .add{color:#9fb06a}
+  pre .cm{color:#6f6153}
+  table{
+    width:100%; border-collapse:collapse; margin:18px 0; font-size:13px;
+    font-variant-numeric:tabular-nums;
+  }
+  th{
+    text-align:left; font-weight:500; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted);
+    padding:0 10px 10px 0; border-bottom:1px solid var(--rule);
+  }
+  td{padding:11px 10px 11px 0; border-bottom:1px solid #2b241d; vertical-align:middle}
+  td.num,th.num{text-align:right; padding-right:16px}
+  tr:last-child td{border-bottom:none}
+  .good{color:#a8c07a}
+  .warn{color:var(--amber)}
+  .bad{color:var(--muted)}
+  .bar{
+    display:inline-block; height:8px; border-radius:2px; vertical-align:middle;
+    background:var(--terra); opacity:.85;
+  }
+  .bar.p{background:var(--olive)}
+  .card{
+    background:var(--card); border:1px solid var(--rule); border-radius:6px;
+    padding:20px 22px; margin:18px 0;
+  }
+  .card h3{margin-top:0}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .kv{display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #2b241d; font-size:13px}
+  .kv:last-child{border-bottom:none}
+  .kv span:first-child{color:var(--muted)}
+  .kv span:last-child{font-family:"JetBrains Mono",Consolas,monospace; font-size:12.5px}
+  .tag{
+    display:inline-block; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    padding:2px 8px; border-radius:10px; border:1px solid currentColor; margin-left:8px;
+  }
+  .tag.ok{color:#a8c07a}
+  .tag.no{color:var(--muted)}
+  .tag.mid{color:var(--amber)}
+  ul{color:var(--ink-2); max-width:76ch; padding-left:20px}
+  li{margin:7px 0}
+  .foot{
+    margin-top:64px; padding-top:20px; border-top:1px solid var(--rule);
+    font-size:12px; color:var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Performance Audit · 2026-10-22</div>
+  <h1>list.js 列表重绘热路径优化</h1>
+  <p class="sub">每次 <code>update()</code> 都把列表容器的 DOM 全部拆掉再挂回。可见集合和顺序都没变的时候，同样要付 2N 次 DOM 变更。这就是 2000 行列表在逐字符输入时掉帧的来源。</p>
+
+  <div class="meta">
+    <div><b>上游</b> javve/list.js v2.3.1</div>
+    <div><b>许可证</b> MIT · 逐字节未改</div>
+    <div><b>改动</b> 4 个源文件 · 10 个 hunk</div>
+    <div><b>测试</b> 168 passed / 1 skipped · 新增 9</div>
+    <div><b>浏览器</b> Edge (Playwright) · CDP 指标</div>
+  </div>
+
+  <h2><span class="num">01</span>结论</h2>
+  <p class="lead">三处浪费，两处收益可判定，一处测不出。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>场景（2000 行）</th>
+        <th class="num">DOM 变更</th>
+        <th class="num">布局耗时</th>
+        <th class="num">样式重算</th>
+        <th>判定</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>逐字符输入 8 次</td>
+        <td class="num">9400 → <span class="good">1800</span></td>
+        <td class="num">53.2 → <span class="good">2.2</span> ms</td>
+        <td class="num">27.2 → <span class="good">0.2</span> ms</td>
+        <td><span class="tag ok">IQR 分离</span></td>
+      </tr>
+      <tr>
+        <td>分页切换</td>
+        <td class="num">8200 → <span class="good">3800</span></td>
+        <td class="num">62.5 → <span class="good">27.9</span> ms</td>
+        <td class="num">31.8 → <span class="good">13.6</span> ms</td>
+        <td><span class="tag ok">IQR 分离</span></td>
+      </tr>
+      <tr>
+        <td>重复查询同一词</td>
+        <td class="num">5600 → <span class="good">1600</span></td>
+        <td class="num">31.3 → <span class="good">0.4</span> ms</td>
+        <td class="num">15.0 → <span class="good">0.0</span> ms</td>
+        <td><span class="tag ok">IQR 分离</span></td>
+      </tr>
+      <tr>
+        <td>普通排序</td>
+        <td class="num">12000 → 5396</td>
+        <td class="num">81.0 → 74.8 ms</td>
+        <td class="num">47.7 → 40.8 ms</td>
+        <td><span class="tag no">测不出</span></td>
+      </tr>
+      <tr>
+        <td>自定义 alphabet 排序</td>
+        <td class="num">8000 → 3600</td>
+        <td class="num">56.0 → 44.5 ms</td>
+        <td class="num">35.0 → 27.6 ms</td>
+        <td><span class="tag mid">趋势明确</span></td>
+      </tr>
+      <tr>
+        <td>过滤收窄 + 复位</td>
+        <td class="num">4400 → 3600</td>
+        <td class="num">20.0 → 27.1 ms</td>
+        <td class="num">14.6 → 12.4 ms</td>
+        <td><span class="tag no">测不出</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:12.5px;color:var(--muted)">判定标准：<code>patched.q3 &lt; upstream.q1</code>（IQR 完全不重叠）。样本 9 轮交错，每轮独立 browser context。</p>
+
+  <img src="docs/figures/fig1-dom-mutations.png" alt="DOM mutations per workload"
+       style="width:100%;height:auto;border-radius:6px;margin:26px 0 6px;border:1px solid var(--rule)">
+  <p style="font-size:12px;color:var(--muted);margin-top:0">每个操作序列在列表容器上产生的 DOM 变更次数（2000 行，9 轮中位数）。排序一项柱高下降但耗时没降 —— 见 §06。</p>
+
+  <img src="docs/figures/fig2-layout-iqr.png" alt="Layout duration distributions"
+       style="width:100%;height:auto;border-radius:6px;margin:26px 0 6px;border:1px solid var(--rule)">
+  <p style="font-size:12px;color:var(--muted);margin-top:0">布局耗时分布：粗条 = IQR，细线 = 全距，白心点 = 中位数。只有 IQR 完全不重叠才记为可判定。</p>
+
+  <h2><span class="num">02</span>瓶颈定位</h2>
+  <p>先数次数，再计时。计时会被 JIT 和调度噪声吃掉，而「改了多少次 DOM」是确定性的。</p>
+
+  <h3>2.1 全量拆建：<code>update()</code></h3>
+  <pre><span class="cm">// src/index.js 上游</span>
+this.update = function () {
+  <span class="del">self.templater.clear()          // 把容器里的节点全部摘掉</span>
+  for (var i = 0; i < il; i++) {
+    if (is[i].matching() && ...) {
+      <span class="del">is[i].show()                  // 再逐个 appendChild 挂回</span>
+    }
+  }
+}</pre>
+  <p>2000 行、搜索结果 2000 行，DOM 里本来就有这 2000 行——仍然做了 <b>2000 次 removeChild + 2000 次 appendChild</b>。<code>search.js</code> 的 <code>prepare.resetList()</code> 里还有一次多余的 <code>clear()</code>，同一次搜索清空两遍。</p>
+
+  <h3>2.2 重复小写化：<code>search.list()</code></h3>
+  <pre><span class="cm">// src/search.js 上游，内层列循环</span>
+var values = item.values(),
+    column = columns[j]
+...
+<span class="del">if (text.toLowerCase().indexOf(words[i]) !== -1)</span></pre>
+  <p>每次按键把所有 item 的所有列重新小写化一遍，而值在两次按键之间通常没变。搜索 <code>'ann'</code>（命中 0 行）仍执行 <b>6001 次 toLowerCase</b>。</p>
+
+  <h3>2.3 比较器里的配置解析：<code>sort.js</code></h3>
+  <pre><span class="cm">// src/sort.js 上游，比较器内部</span>
+sortFunction = function (itemA, itemB) {
+  var sort = list.utils.naturalSort
+  <span class="del">sort.alphabet = list.alphabet || options.alphabet || undefined</span>
+  if (!sort.alphabet && options.insensitive) {
+    sort = list.utils.naturalSort.caseInsensitive
+  }
+  return sort(itemA.values()[...], itemB.values()[...]) * multi
+}</pre>
+  <p><code>alphabet</code> 是带 setter 的访问器，每次赋值都重建整张 <code>alphabetIndexMap</code>。2000 行一次排序 = <b>13904 次比较 = 13904 次索引表重建</b>。</p>
+
+  <h2><span class="num">03</span>修改</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>A · 增量 DOM 同步</h3>
+      <p style="font-size:13.5px">新增 <code>templater.sync(items)</code>：打 token → 单次遍历移除非目标节点 → 单次前向扫描按序就位。非 item 子节点仍会被清除，与原 <code>clear()</code> 语义一致。</p>
+      <div class="kv"><span>search('a') DOM 变更</span><span>4000 → 0</span></div>
+      <div class="kv"><span>sort DOM 变更</span><span>4000 → 1796</span></div>
+    </div>
+    <div class="card">
+      <h3>B · 搜索小写缓存</h3>
+      <p style="font-size:13.5px">按 <code>(item, 列)</code> 缓存，用缓存时的原文做严格相等校验。值被改写后原文必变，缓存自动失效，无需失效钩子。</p>
+      <div class="kv"><span>search('ann') toLowerCase</span><span>6001 → 601</span></div>
+      <div class="kv"><span>search('ann') values()</span><span>6001 → 2001</span></div>
+    </div>
+    <div class="card">
+      <h3>C · 比较器前置化</h3>
+      <p style="font-size:13.5px">把 naturalSort 选取、alphabet 赋值、insensitive 判断提到排序循环外，整轮只做一次。</p>
+      <div class="kv"><span>alphabet setter 次数</span><span>13904 → 1</span></div>
+    </div>
+    <div class="card">
+      <h3>未采用 · 排序键预提取</h3>
+      <p style="font-size:13.5px">实测端到端无可测收益（scriptMs 比值 1.06，IQR 重叠）。按最小改动原则不引入 item 上的额外属性与字符串副本。</p>
+    </div>
+  </div>
+
+  <h2><span class="num">04</span>逐臂归因</h2>
+  <img src="docs/figures/fig3-attribution.png" alt="Attribution ladder"
+       style="width:100%;height:auto;border-radius:6px;margin:14px 0 6px;border:1px solid var(--rule)">
+  <p style="font-size:12px;color:var(--muted);margin-top:0">A = 只做增量同步，AB = 加小写缓存，ABC = 加比较器前置化。三个计数器各自只被一个臂推动。</p>
+  <p>三处修改落在独立文件上，构造 A → AB → ABC 三个递进变体隔离贡献。关系是正交的：</p>
+
+  <table>
+    <thead>
+      <tr><th>计数项（2000 行）</th><th class="num">upstream</th><th class="num">A</th><th class="num">AB</th><th class="num">ABC</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>search('a')</code> DOM 变更</td><td class="num">4000</td><td class="num good">0</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td><code>sort('name')</code> DOM 变更</td><td class="num">4000</td><td class="num good">1796</td><td class="num">1796</td><td class="num">1796</td></tr>
+      <tr><td><code>search('ann')</code> toLowerCase</td><td class="num">6001</td><td class="num">6001</td><td class="num good">601</td><td class="num">601</td></tr>
+      <tr><td><code>sort</code> alphabet setter</td><td class="num">13904</td><td class="num">13904</td><td class="num">13904</td><td class="num good">1</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">05</span>等价性与反向验证</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>差分等价 <span class="tag ok">逐字节</span></h3>
+      <p style="font-size:13.5px">32 步操作序列，每步记录容器 DOM 逐节点 outerHTML、visibleItems / matchingItems 值序列、found / filtered 标志、toJSON()。</p>
+      <div class="kv"><span>快照大小</span><span>1,200,320 B</span></div>
+      <div class="kv"><span>sha256（两臂）</span><span style="font-size:10.5px">e233fe32…68bc</span></div>
+      <div class="kv"><span>cmp</span><span>identical</span></div>
+    </div>
+    <div class="card">
+      <h3>反向喂毒 <span class="tag mid">3 红 6 绿</span></h3>
+      <p style="font-size:13.5px">新增 9 条测试。放到上游源码上跑：前 3 条（DOM 变更预算）必红，后 6 条（顺序、非 item 清理、空结果、缓存失效、add/remove）两臂都绿。</p>
+      <div class="kv"><span>上游</span><span>3 failed / 6 passed</span></div>
+      <div class="kv"><span>交付版</span><span>9 passed</span></div>
+    </div>
+  </div>
+
+  <h2><span class="num">06</span>负结果：排序为什么没变快</h2>
+  <p>DOM 变更次数从 12000 降到 5396（−55%），但两档规模的布局耗时 IQR 全部重叠。</p>
+  <p>原因不是测量问题：新实现用 <code>insertBefore</code> 移动已有节点，旧实现用 <code>removeChild</code> + <code>appendChild</code> 摘掉再挂回。<b>两者都会让节点脱离文档树再进入</b>，样式失效与布局重算成本相当，<code>insertBefore</code> 还要在兄弟节点间定位，单次可能更贵。次数少了 55%，总代价没变。</p>
+  <p>这也说明：只看「DOM 操作次数」就宣布排序优化成功是错的。排序场景的真实瓶颈是<b>每次移动都必须重新布局</b>，要虚拟滚动或 transform 位移才能解决，超出「最小改动修热路径」的范围。</p>
+
+  <h2><span class="num">07</span>局限</h2>
+  <ul>
+    <li>未在真实 IE9 上验证。只保证不使用 ES6 内置对象与箭头函数，并用 babel + <code>.browserslistrc</code>（<code>ie 9</code>）构建。</li>
+    <li>未提交上游。上游 2025-04 后无新提交，<code>update()</code> 全量重建是其长期设计，是否接受增量同步属维护者判断。</li>
+    <li>只覆盖列表重绘路径。<code>parse()</code> 初始化、<code>pagination.refresh()</code> 重建分页条、<code>get-attribute.js</code> 的线性 fallback 均未改动。</li>
+    <li>测量为单机单次会话。结论只采用同轮交错样本的 IQR 分离判据；DOM 变更次数是确定性计数，不受此限。</li>
+  </ul>
+
+  <div class="foot">
+    数据源 <code>results/summary.json</code> · 原始样本 <code>results/raw/browser_2000.json</code>、<code>browser_5000.json</code> · 补丁 <code>patches/listjs-dom-sync.patch</code>
+  </div>
+
+</div>
+</body>
+</html>

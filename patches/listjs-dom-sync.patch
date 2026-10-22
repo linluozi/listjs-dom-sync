@@ -1,0 +1,218 @@
+--- a/src/index.js
++++ b/src/index.js
+@@ -237,25 +237,29 @@
+   }
+ 
+   this.update = function () {
+     var is = self.items,
+-      il = is.length
+-
+-    self.visibleItems = []
+-    self.matchingItems = []
+-    self.templater.clear()
+-    for (var i = 0; i < il; i++) {
+-      if (is[i].matching() && self.matchingItems.length + 1 >= self.i && self.visibleItems.length < self.page) {
+-        is[i].show()
+-        self.visibleItems.push(is[i])
+-        self.matchingItems.push(is[i])
+-      } else if (is[i].matching()) {
+-        self.matchingItems.push(is[i])
+-        is[i].hide()
+-      } else {
+-        is[i].hide()
+-      }
+-    }
++      il = is.length,
++      start = self.i,
++      page = self.page,
++      matching = [],
++      visible = [],
++      item,
++      i
++
++    for (i = 0; i < il; i++) {
++      item = is[i]
++      if (item.matching()) {
++        matching.push(item)
++        if (matching.length >= start && visible.length < page) {
++          visible.push(item)
++        }
++      }
++    }
++
++    self.matchingItems = matching
++    self.visibleItems = visible
++    self.templater.sync(visible)
+     self.trigger('updated')
+     return self
+   }
+ 
+--- a/src/search.js
++++ b/src/search.js
+@@ -1,11 +1,36 @@
+ module.exports = function (list) {
+   var item, text, columns, searchString, customSearch
++
++  /*
++   * 小写化缓存。
++   *
++   * 上游对每一轮搜索的每个 item × 每一列都重新 toLowerCase() 一遍，而 item
++   * 的值在两次按键之间通常没有任何变化。这里按 (item, 列名) 缓存结果，并用
++   * 缓存时的原文做严格相等校验：只要 item 的值被改写（values(newValues)），
++   * 原文引用/内容必然不同，缓存自动失效，不需要显式失效钩子。
++   *
++   * 不引入 WeakMap（IE9 兼容）；缓存挂在 item 上，随 item 一起被回收。
++   * 键加 '$' 前缀，避免 __proto__ / constructor 之类的列名污染原型链。
++   */
++  var lowerOf = function (item, column, text) {
++    var cache = item._listjsLower,
++      entry
++    if (cache === undefined) {
++      cache = item._listjsLower = {}
++    }
++    entry = cache['$' + column]
++    if (entry !== undefined && entry.text === text) {
++      return entry.lower
++    }
++    entry = { text: text, lower: text.toLowerCase() }
++    cache['$' + column] = entry
++    return entry.lower
++  }
+ 
+   var prepare = {
+     resetList: function () {
+       list.i = 1
+-      list.templater.clear()
+       customSearch = undefined
+     },
+     setOptions: function (args) {
+       if (args.length == 2 && args[1] instanceof Array) {
+@@ -56,16 +81,17 @@
+       for (var k = 0, kl = list.items.length; k < kl; k++) {
+         var item = list.items[k]
+         item.found = false
+         if (!words.length) continue
++        // values() 返回的是同一个 _values 引用，提到列循环外只取一次。
++        var values = item.values()
+         for (var i = 0, il = words.length; i < il; i++) {
+           var word_found = false
+           for (var j = 0, jl = columns.length; j < jl; j++) {
+-            var values = item.values(),
+-              column = columns[j]
++            var column = columns[j]
+             if (values.hasOwnProperty(column) && values[column] !== undefined && values[column] !== null) {
+               var text = typeof values[column] !== 'string' ? values[column].toString() : values[column]
+-              if (text.toLowerCase().indexOf(words[i]) !== -1) {
++              if (lowerOf(item, column, text).indexOf(words[i]) !== -1) {
+                 // word found, so no need to check it against any other columns
+                 word_found = true
+                 break
+               }
+--- a/src/sort.js
++++ b/src/sort.js
+@@ -75,15 +75,31 @@
+       sortFunction = function (itemA, itemB) {
+         return customSortFunction(itemA, itemB, options) * multi
+       }
+     } else {
+-      sortFunction = function (itemA, itemB) {
+-        var sort = list.utils.naturalSort
+-        sort.alphabet = list.alphabet || options.alphabet || undefined
+-        if (!sort.alphabet && options.insensitive) {
+-          sort = list.utils.naturalSort.caseInsensitive
++      /*
++       * 上游把 naturalSort 的选取、alphabet 赋值和 insensitive 判断全部放在
++       * 比较器内部，于是 n·log n 次比较就要把这些重复执行 n·log n 遍。
++       * 其中 `naturalSort.alphabet = ...` 是带 setter 的赋值，每次都会重建
++       * 整张 alphabetIndexMap；配置了自定义 alphabet 时，一次排序会在比较器
++       * 里重建上千次索引表。这里把三件事提到排序循环外，整轮只做一次。
++       *
++       * 未做「预提取排序键 + 预小写」：实测在 2000 行规模下端到端无可测收益
++       * （见 README 的 sorting 一行），按最小改动原则不引入额外状态。
++       */
++      var naturalSort = list.utils.naturalSort,
++        valueName = options.valueName
++
++      naturalSort.alphabet = list.alphabet || options.alphabet || undefined
++
++      if (!naturalSort.alphabet && options.insensitive) {
++        sortFunction = function (itemA, itemB) {
++          return naturalSort.caseInsensitive(itemA.values()[valueName], itemB.values()[valueName]) * multi
+         }
+-        return sort(itemA.values()[options.valueName], itemB.values()[options.valueName]) * multi
++      } else {
++        sortFunction = function (itemA, itemB) {
++          return naturalSort(itemA.values()[valueName], itemB.values()[valueName]) * multi
++        }
+       }
+     }
+ 
+     list.items.sort(sortFunction)
+--- a/src/templater.js
++++ b/src/templater.js
+@@ -177,8 +177,65 @@
+     if (item.elm !== undefined && item.elm.parentNode === list.list) {
+       list.list.removeChild(item.elm)
+     }
+   }
++
++  /*
++   * 增量同步容器子节点到目标顺序。
++   *
++   * 上游做法是「clear() 全量拆掉 + 逐个 appendChild 重新挂回」，可见集合与
++   * 顺序都没变时同样会产生 2N 次 DOM 变更。这里改为三步：
++   *   1. 确保目标项都有 DOM 节点（create 对已有 elm 是 no-op）；
++   *   2. 给目标节点打本轮 token，单次遍历移除所有非目标子节点
++   *      （包含非 item 节点，与原 clear() 的「清空容器」语义一致）；
++   *   3. 单次前向扫描按序就位，仅对位置不对的节点调用 insertBefore。
++   *
++   * 不引入 Set / Map / WeakMap，保持 .browserslistrc 声明的 IE9 兼容。
++   */
++  var syncToken = 0
++
++  this.sync = function (items) {
++    var container = list.list,
++      n = items.length,
++      i,
++      elm,
++      node,
++      nextNode,
++      cursor
++
++    if (n === 0) {
++      templater.clear()
++      return
++    }
++
++    for (i = 0; i < n; i++) {
++      templater.create(items[i])
++    }
++
++    syncToken++
++    for (i = 0; i < n; i++) {
++      items[i].elm._listjsSyncToken = syncToken
++    }
++
++    node = container.firstChild
++    while (node) {
++      nextNode = node.nextSibling
++      if (node._listjsSyncToken !== syncToken) {
++        container.removeChild(node)
++      }
++      node = nextNode
++    }
++
++    cursor = container.firstChild
++    for (i = 0; i < n; i++) {
++      elm = items[i].elm
++      if (elm === cursor) {
++        cursor = cursor.nextSibling
++      } else {
++        container.insertBefore(elm, cursor)
++      }
++    }
++  }
+   this.clear = function () {
+     /* .innerHTML = ''; fucks up IE */
+     if (list.list.hasChildNodes()) {
+       while (list.list.childNodes.length >= 1) {

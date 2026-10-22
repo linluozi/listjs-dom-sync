@@ -1,0 +1,1498 @@
+{
+  "project": "list.js",
+  "upstreamTag": "v2.3.1",
+  "upstreamCommit": "e9312b074f7d8d9a6a5cb67beb8a480115ed3886",
+  "upstreamMasterHead": "44ae2396072a617f6a418b5d10c5adbcbc34842f",
+  "license": "MIT",
+  "licenseSha256": "52803c32bada68902795d4809ee8133bcbaf8ded276b13bdcef7185d04e86261",
+  "licenseBytes": 1108,
+  "generatedAt": "2026-10-22T05:09:04.547Z",
+  "browser": {
+    "n2000": {
+      "n": 2000,
+      "rounds": 9,
+      "workloads": {
+        "typing": {
+          "upstream": {
+            "domTotal": {
+              "median": 9400,
+              "q1": 9400,
+              "q3": 9400,
+              "min": 9400,
+              "max": 9400,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 37.799999999348074,
+              "q1": 21.40000000037253,
+              "q3": 38.89999999990687,
+              "min": 20.59999999869615,
+              "max": 52.200000000186265,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 53.208999999999996,
+              "q1": 29.583000000000002,
+              "q3": 56.62,
+              "min": 22.548,
+              "max": 65.13199999999999,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 27.183,
+              "q1": 15.530000000000001,
+              "q3": 29.381,
+              "min": 14.201,
+              "max": 34.196999999999996,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 48.799999999813735,
+              "q1": 28.600000000093132,
+              "q3": 53.89999999990687,
+              "min": 25.5,
+              "max": 73.1999999997206,
+              "n": 9
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 1800,
+              "q1": 1800,
+              "q3": 1800,
+              "min": 1800,
+              "max": 1800,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 22.899999999441206,
+              "q1": 20,
+              "q3": 24.399999999906868,
+              "min": 10.699999999720603,
+              "max": 25.200000000186265,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 2.157,
+              "q1": 1.86,
+              "q3": 2.496,
+              "min": 1.256,
+              "max": 3.0820000000000003,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 0.163,
+              "q1": 0.153,
+              "q3": 0.179,
+              "min": 0.11900000000000001,
+              "max": 0.39,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 9.199999999720603,
+              "q1": 8.700000000186265,
+              "q3": 9.600000000093132,
+              "min": 3.8999999999068677,
+              "max": 11,
+              "n": 9
+            }
+          },
+          "ratio": {
+            "domTotal": 0.19148936170212766,
+            "scriptMs": 0.6058201058157713,
+            "layoutDurationMs": 0.040538254806517696,
+            "recalcStyleDurationMs": 0.005996394805577015,
+            "maxGap": 0.18852459015892867
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": false,
+            "layoutDurationMs": true,
+            "recalcStyleDurationMs": true,
+            "maxGap": true
+          }
+        },
+        "sorting": {
+          "upstream": {
+            "domTotal": {
+              "median": 12000,
+              "q1": 12000,
+              "q3": 12000,
+              "min": 12000,
+              "max": 12000,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 53.10000000009313,
+              "q1": 38.89999999990687,
+              "q3": 57.6999999997206,
+              "min": 24.5,
+              "max": 72.3000000002794,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 80.962,
+              "q1": 65.8,
+              "q3": 102.313,
+              "min": 38.699,
+              "max": 111.692,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 47.659,
+              "q1": 37.902,
+              "q3": 58.772999999999996,
+              "min": 21.47,
+              "max": 63.11899999999999,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 67,
+              "q1": 62.700000000186265,
+              "q3": 78.10000000009313,
+              "min": 29.899999999906868,
+              "max": 86.39999999990687,
+              "n": 9
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 5396,
+              "q1": 5396,
+              "q3": 5396,
+              "min": 5396,
+              "max": 5396,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 43.59999999962747,
+              "q1": 28.899999999906868,
+              "q3": 53,
+              "min": 20.40000000037253,
+              "max": 59.10000000009313,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 74.82300000000001,
+              "q1": 40.949,
+              "q3": 80.121,
+              "min": 33.048,
+              "max": 103.057,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 40.792,
+              "q1": 24.785999999999998,
+              "q3": 50.867999999999995,
+              "min": 19.183,
+              "max": 54.760999999999996,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 59.89999999990687,
+              "q1": 35.200000000186265,
+              "q3": 65.29999999981374,
+              "min": 25.600000000093132,
+              "max": 80.20000000018626,
+              "n": 9
+            }
+          },
+          "ratio": {
+            "domTotal": 0.44966666666666666,
+            "scriptMs": 0.8210922787109416,
+            "layoutDurationMs": 0.9241743039944665,
+            "recalcStyleDurationMs": 0.8559138882477602,
+            "maxGap": 0.8940298507448786
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": false,
+            "layoutDurationMs": false,
+            "recalcStyleDurationMs": false,
+            "maxGap": false
+          }
+        },
+        "sortingAlphabet": {
+          "upstream": {
+            "domTotal": {
+              "median": 8000,
+              "q1": 8000,
+              "q3": 8000,
+              "min": 8000,
+              "max": 8000,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 48.5,
+              "q1": 34.89999999944121,
+              "q3": 54.6999999997206,
+              "min": 27.09999999962747,
+              "max": 58.1999999997206,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 56.025,
+              "q1": 38.957,
+              "q3": 59.807,
+              "min": 28.832,
+              "max": 69.76599999999999,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 35.004,
+              "q1": 25.688,
+              "q3": 35.769000000000005,
+              "min": 15.885,
+              "max": 42.55,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 76.5,
+              "q1": 50,
+              "q3": 89.10000000009313,
+              "min": 42,
+              "max": 98.29999999981374,
+              "n": 9
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 3600,
+              "q1": 3600,
+              "q3": 3600,
+              "min": 3600,
+              "max": 3600,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 31.50000000046566,
+              "q1": 27.600000000093132,
+              "q3": 37.39999999990687,
+              "min": 14.300000000279397,
+              "max": 41.49999999953434,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 44.489000000000004,
+              "q1": 40.743,
+              "q3": 57.409,
+              "min": 21.918,
+              "max": 71.56,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 27.619999999999997,
+              "q1": 23.293000000000003,
+              "q3": 32.062,
+              "min": 13.088000000000001,
+              "max": 35.679,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 54.60000000009313,
+              "q1": 51.8000000002794,
+              "q3": 67.09999999962747,
+              "min": 26.799999999813735,
+              "max": 73.1999999997206,
+              "n": 9
+            }
+          },
+          "ratio": {
+            "domTotal": 0.45,
+            "scriptMs": 0.6494845360920755,
+            "layoutDurationMs": 0.7940919232485498,
+            "recalcStyleDurationMs": 0.7890526796937493,
+            "maxGap": 0.7137254901972958
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": false,
+            "layoutDurationMs": false,
+            "recalcStyleDurationMs": false,
+            "maxGap": false
+          }
+        },
+        "filtering": {
+          "upstream": {
+            "domTotal": {
+              "median": 4400,
+              "q1": 4400,
+              "q3": 4400,
+              "min": 4400,
+              "max": 4400,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 14.999999999534339,
+              "q1": 12.600000000558794,
+              "q3": 16.700000000186265,
+              "min": 7.000000000465661,
+              "max": 19.800000000279397,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 19.964,
+              "q1": 19.278,
+              "q3": 32.376000000000005,
+              "min": 13.413,
+              "max": 45.114000000000004,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 14.553,
+              "q1": 10.381,
+              "q3": 16.079,
+              "min": 7.6049999999999995,
+              "max": 21.45,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 36.3000000002794,
+              "q1": 28.699999999720603,
+              "q3": 50.299999999813735,
+              "min": 20.5,
+              "max": 64.6999999997206,
+              "n": 9
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 3600,
+              "q1": 3600,
+              "q3": 3600,
+              "min": 3600,
+              "max": 3600,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 10.800000000279397,
+              "q1": 7.300000000279397,
+              "q3": 12.700000000186265,
+              "min": 6.2000000001862645,
+              "max": 16.799999999813735,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 27.148,
+              "q1": 17.616,
+              "q3": 28.953,
+              "min": 13.046000000000001,
+              "max": 38.07,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 12.448,
+              "q1": 7.460999999999999,
+              "q3": 14.867,
+              "min": 7.045,
+              "max": 16.673000000000002,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 42.89999999990687,
+              "q1": 26.5,
+              "q3": 43.90000000037253,
+              "min": 21.5,
+              "max": 57.8000000002794,
+              "n": 9
+            }
+          },
+          "ratio": {
+            "domTotal": 0.8181818181818182,
+            "scriptMs": 0.7200000000409782,
+            "layoutDurationMs": 1.359847725906632,
+            "recalcStyleDurationMs": 0.8553562839277125,
+            "maxGap": 1.1818181818065199
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": false,
+            "layoutDurationMs": false,
+            "recalcStyleDurationMs": false,
+            "maxGap": false
+          }
+        },
+        "paging": {
+          "upstream": {
+            "domTotal": {
+              "median": 8200,
+              "q1": 8200,
+              "q3": 8200,
+              "min": 8200,
+              "max": 8200,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 24.299999999813735,
+              "q1": 19.00000000046566,
+              "q3": 27.700000000186265,
+              "min": 11.100000000093132,
+              "max": 34.60000000009313,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 62.486,
+              "q1": 44.312999999999995,
+              "q3": 65.361,
+              "min": 33.412,
+              "max": 84.293,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 31.82,
+              "q1": 25.163,
+              "q3": 32.763,
+              "min": 16.244,
+              "max": 40.203,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 57.09999999962747,
+              "q1": 47.59999999962747,
+              "q3": 60.40000000037253,
+              "min": 29.90000000037253,
+              "max": 81.29999999981374,
+              "n": 9
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 3800,
+              "q1": 3800,
+              "q3": 3800,
+              "min": 3800,
+              "max": 3800,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 11.300000000279397,
+              "q1": 9.499999999534339,
+              "q3": 11.899999999441206,
+              "min": 8.399999999906868,
+              "max": 16.200000000186265,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 27.918,
+              "q1": 25.555999999999997,
+              "q3": 33.834,
+              "min": 21.82,
+              "max": 35.871,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 13.579,
+              "q1": 12.46,
+              "q3": 15.994000000000002,
+              "min": 11.879000000000001,
+              "max": 18.376,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 43.10000000009313,
+              "q1": 40.5,
+              "q3": 49.700000000186265,
+              "min": 35,
+              "max": 56.3000000002794,
+              "n": 9
+            }
+          },
+          "ratio": {
+            "domTotal": 0.4634146341463415,
+            "scriptMs": 0.4650205761467495,
+            "layoutDurationMs": 0.4467880805300387,
+            "recalcStyleDurationMs": 0.42674418604651165,
+            "maxGap": 0.7548161120906186
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": true,
+            "layoutDurationMs": true,
+            "recalcStyleDurationMs": true,
+            "maxGap": false
+          }
+        },
+        "repeat": {
+          "upstream": {
+            "domTotal": {
+              "median": 5600,
+              "q1": 5600,
+              "q3": 5600,
+              "min": 5600,
+              "max": 5600,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 28.199999999720603,
+              "q1": 25.699999999720603,
+              "q3": 29.300000000279397,
+              "min": 14.099999999627471,
+              "max": 41.39999999990687,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 31.29,
+              "q1": 23.580000000000002,
+              "q3": 32.421,
+              "min": 16.295,
+              "max": 52.595000000000006,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 14.962,
+              "q1": 14.017999999999999,
+              "q3": 17.554,
+              "min": 8.693,
+              "max": 21.475,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 22.100000000093132,
+              "q1": 19.700000000186265,
+              "q3": 25.799999999813735,
+              "min": 12.100000000093132,
+              "max": 34.89999999990687,
+              "n": 9
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 1600,
+              "q1": 1600,
+              "q3": 1600,
+              "min": 1600,
+              "max": 1600,
+              "n": 9
+            },
+            "scriptMs": {
+              "median": 16.90000000037253,
+              "q1": 13.899999999906868,
+              "q3": 18.600000000093132,
+              "min": 8.600000000558794,
+              "max": 33.60000000055879,
+              "n": 9
+            },
+            "layoutDurationMs": {
+              "median": 0.373,
+              "q1": 0.34900000000000003,
+              "q3": 0.517,
+              "min": 0.201,
+              "max": 1.0859999999999999,
+              "n": 9
+            },
+            "recalcStyleDurationMs": {
+              "median": 0.038,
+              "q1": 0.033,
+              "q3": 0.044,
+              "min": 0.022,
+              "max": 0.083,
+              "n": 9
+            },
+            "maxGap": {
+              "median": 13,
+              "q1": 10.100000000093132,
+              "q3": 14.899999999906868,
+              "min": 6.699999999720603,
+              "max": 23.700000000186265,
+              "n": 9
+            }
+          },
+          "ratio": {
+            "domTotal": 0.2857142857142857,
+            "scriptMs": 0.5992907801609918,
+            "layoutDurationMs": 0.011920741450942794,
+            "recalcStyleDurationMs": 0.0025397674107739605,
+            "maxGap": 0.5882352941151682
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": true,
+            "layoutDurationMs": true,
+            "recalcStyleDurationMs": true,
+            "maxGap": true
+          }
+        }
+      }
+    },
+    "n5000": {
+      "n": 5000,
+      "rounds": 7,
+      "workloads": {
+        "typing": {
+          "upstream": {
+            "domTotal": {
+              "median": 23500,
+              "q1": 23500,
+              "q3": 23500,
+              "min": 23500,
+              "max": 23500,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 103.6000000005588,
+              "q1": 78.25000000023283,
+              "q3": 105.69999999995343,
+              "min": 57.99999999906868,
+              "max": 110.70000000018626,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 139.732,
+              "q1": 109.03999999999999,
+              "q3": 153.2175,
+              "min": 93.257,
+              "max": 156.34300000000002,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 68.63900000000001,
+              "q1": 50.891,
+              "q3": 74.89500000000001,
+              "min": 40.539,
+              "max": 80.134,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 148.40000000037253,
+              "q1": 106.9000000001397,
+              "q3": 151.5,
+              "min": 89.89999999990687,
+              "max": 161,
+              "n": 7
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 4500,
+              "q1": 4500,
+              "q3": 4500,
+              "min": 4500,
+              "max": 4500,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 49.700000000651926,
+              "q1": 42.5,
+              "q3": 55.700000000651926,
+              "min": 28.899999999906868,
+              "max": 66.90000000037253,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 5.949000000000001,
+              "q1": 5.0835,
+              "q3": 6.5725,
+              "min": 3.663,
+              "max": 7.228,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 0.332,
+              "q1": 0.3115,
+              "q3": 0.3535,
+              "min": 0.196,
+              "max": 0.38699999999999996,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 18.200000000186265,
+              "q1": 16.199999999720603,
+              "q3": 21.450000000186265,
+              "min": 10.5,
+              "max": 25.700000000186265,
+              "n": 7
+            }
+          },
+          "ratio": {
+            "domTotal": 0.19148936170212766,
+            "scriptMs": 0.4797297297334349,
+            "layoutDurationMs": 0.04257435662554033,
+            "recalcStyleDurationMs": 0.004836900304491615,
+            "maxGap": 0.12264150943490955
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": true,
+            "layoutDurationMs": true,
+            "recalcStyleDurationMs": true,
+            "maxGap": true
+          }
+        },
+        "sorting": {
+          "upstream": {
+            "domTotal": {
+              "median": 30000,
+              "q1": 30000,
+              "q3": 30000,
+              "min": 30000,
+              "max": 30000,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 117.6999999997206,
+              "q1": 101.50000000023283,
+              "q3": 159.4000000001397,
+              "min": 95.49999999953434,
+              "max": 173.60000000009313,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 194.78699999999998,
+              "q1": 154.874,
+              "q3": 244.5845,
+              "min": 134.606,
+              "max": 264.353,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 111.48700000000001,
+              "q1": 81.915,
+              "q3": 126.982,
+              "min": 81.08999999999999,
+              "max": 146.24300000000002,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 142.5,
+              "q1": 121.55000000004657,
+              "q3": 189.35000000009313,
+              "min": 113.60000000009313,
+              "max": 212.29999999981374,
+              "n": 7
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 13496,
+              "q1": 13496,
+              "q3": 13496,
+              "min": 13496,
+              "max": 13496,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 117.8000000002794,
+              "q1": 88.9499999997206,
+              "q3": 128.7000000004191,
+              "min": 77.80000000074506,
+              "max": 168.6000000005588,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 184.861,
+              "q1": 128.0495,
+              "q3": 214.1225,
+              "min": 114.448,
+              "max": 360.639,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 106.044,
+              "q1": 68.379,
+              "q3": 114.59100000000001,
+              "min": 62.977000000000004,
+              "max": 134.492,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 144.90000000037253,
+              "q1": 112.50000000023283,
+              "q3": 169.30000000004657,
+              "min": 100.89999999990687,
+              "max": 286.5,
+              "n": 7
+            }
+          },
+          "ratio": {
+            "domTotal": 0.4498666666666667,
+            "scriptMs": 1.0008496176767971,
+            "layoutDurationMs": 0.9490417738350095,
+            "recalcStyleDurationMs": 0.9511781642702736,
+            "maxGap": 1.0168421052657721
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": false,
+            "layoutDurationMs": false,
+            "recalcStyleDurationMs": false,
+            "maxGap": false
+          }
+        },
+        "sortingAlphabet": {
+          "upstream": {
+            "domTotal": {
+              "median": 20000,
+              "q1": 20000,
+              "q3": 20000,
+              "min": 20000,
+              "max": 20000,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 115.8999999994412,
+              "q1": 95.19999999995343,
+              "q3": 130.6999999997206,
+              "min": 86.10000000009313,
+              "max": 163.60000000009313,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 148.03900000000002,
+              "q1": 126.5205,
+              "q3": 169.37650000000002,
+              "min": 88.72099999999999,
+              "max": 222.248,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 71.268,
+              "q1": 56.646,
+              "q3": 85.18299999999999,
+              "min": 47.467,
+              "max": 94.64999999999999,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 185.60000000009313,
+              "q1": 159.45000000018626,
+              "q3": 230.5,
+              "min": 127.29999999981374,
+              "max": 254.89999999990687,
+              "n": 7
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 9000,
+              "q1": 9000,
+              "q3": 9000,
+              "min": 9000,
+              "max": 9000,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 77.10000000009313,
+              "q1": 70.60000000009313,
+              "q3": 97.10000000009313,
+              "min": 58.700000000186265,
+              "max": 178.1999999997206,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 110.717,
+              "q1": 102.8345,
+              "q3": 160.141,
+              "min": 90.467,
+              "max": 329.87300000000005,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 61.617,
+              "q1": 49.0295,
+              "q3": 77.329,
+              "min": 46.037,
+              "max": 151.622,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 126,
+              "q1": 121.35000000009313,
+              "q3": 179.39999999990687,
+              "min": 104,
+              "max": 345.10000000009313,
+              "n": 7
+            }
+          },
+          "ratio": {
+            "domTotal": 0.45,
+            "scriptMs": 0.6652286453879626,
+            "layoutDurationMs": 0.7478907585163368,
+            "recalcStyleDurationMs": 0.8645815793904698,
+            "maxGap": 0.6788793103444869
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": false,
+            "layoutDurationMs": false,
+            "recalcStyleDurationMs": false,
+            "maxGap": false
+          }
+        },
+        "filtering": {
+          "upstream": {
+            "domTotal": {
+              "median": 11000,
+              "q1": 11000,
+              "q3": 11000,
+              "min": 11000,
+              "max": 11000,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 30.100000000093132,
+              "q1": 22.649999999906868,
+              "q3": 37.1500000001397,
+              "min": 18.299999999813735,
+              "max": 49.89999999990687,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 110.8,
+              "q1": 81.821,
+              "q3": 114.19,
+              "min": 49.348000000000006,
+              "max": 227.739,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 31.622999999999998,
+              "q1": 29.219,
+              "q3": 40.5895,
+              "min": 20.77,
+              "max": 60.242,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 143.6999999997206,
+              "q1": 112.9000000001397,
+              "q3": 147.4000000001397,
+              "min": 68.79999999981374,
+              "max": 286.39999999990687,
+              "n": 7
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 9000,
+              "q1": 9000,
+              "q3": 9000,
+              "min": 9000,
+              "max": 9000,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 19.99999999953434,
+              "q1": 18.4000000001397,
+              "q3": 28.0999999998603,
+              "min": 15.500000000465661,
+              "max": 35.40000000037253,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 80.03699999999999,
+              "q1": 53.762499999999996,
+              "q3": 81.491,
+              "min": 43.817,
+              "max": 170.06199999999998,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 27.189999999999998,
+              "q1": 23.495,
+              "q3": 36.3445,
+              "min": 20.52,
+              "max": 49.59,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 112.8000000002794,
+              "q1": 80.8499999998603,
+              "q3": 121.14999999990687,
+              "min": 67.29999999981374,
+              "max": 225.3000000002794,
+              "n": 7
+            }
+          },
+          "ratio": {
+            "domTotal": 0.8181818181818182,
+            "scriptMs": 0.6644518272249985,
+            "layoutDurationMs": 0.72235559566787,
+            "recalcStyleDurationMs": 0.8598172216424754,
+            "maxGap": 0.784968684763387
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": false,
+            "layoutDurationMs": true,
+            "recalcStyleDurationMs": false,
+            "maxGap": false
+          }
+        },
+        "paging": {
+          "upstream": {
+            "domTotal": {
+              "median": 20200,
+              "q1": 20200,
+              "q3": 20200,
+              "min": 20200,
+              "max": 20200,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 60.09999999962747,
+              "q1": 54.450000000186265,
+              "q3": 61.40000000037253,
+              "min": 45.299999999813735,
+              "max": 76.70000000018626,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 152.41299999999998,
+              "q1": 141.027,
+              "q3": 165.8855,
+              "min": 114.414,
+              "max": 252.405,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 67.658,
+              "q1": 59.342,
+              "q3": 76.68299999999999,
+              "min": 45.668,
+              "max": 104.55799999999999,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 157.39999999990687,
+              "q1": 142.75,
+              "q3": 173,
+              "min": 117.6999999997206,
+              "max": 228.5,
+              "n": 7
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 9800,
+              "q1": 9800,
+              "q3": 9800,
+              "min": 9800,
+              "max": 9800,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 23.799999999813735,
+              "q1": 21.550000000046566,
+              "q3": 28.050000000046566,
+              "min": 14,
+              "max": 35.39999999990687,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 75.256,
+              "q1": 64.3125,
+              "q3": 82.2515,
+              "min": 51.711,
+              "max": 90.27300000000001,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 32.897000000000006,
+              "q1": 28.448999999999998,
+              "q3": 36.9045,
+              "min": 18.695,
+              "max": 45.915,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 111.60000000009313,
+              "q1": 95.3499999998603,
+              "q3": 124.45000000018626,
+              "min": 72.5,
+              "max": 140.10000000009313,
+              "n": 7
+            }
+          },
+          "ratio": {
+            "domTotal": 0.48514851485148514,
+            "scriptMs": 0.39600665557339865,
+            "layoutDurationMs": 0.4937636553312382,
+            "recalcStyleDurationMs": 0.48622483667858946,
+            "maxGap": 0.7090216010175296
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": true,
+            "layoutDurationMs": true,
+            "recalcStyleDurationMs": true,
+            "maxGap": true
+          }
+        },
+        "repeat": {
+          "upstream": {
+            "domTotal": {
+              "median": 14000,
+              "q1": 14000,
+              "q3": 14000,
+              "min": 14000,
+              "max": 14000,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 67.29999999981374,
+              "q1": 60.199999999953434,
+              "q3": 75.54999999981374,
+              "min": 49.5,
+              "max": 99.69999999925494,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 64.589,
+              "q1": 52.4995,
+              "q3": 72.693,
+              "min": 43.012,
+              "max": 100.87,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 41.321,
+              "q1": 34.9915,
+              "q3": 43.412499999999994,
+              "min": 29.263,
+              "max": 57.499,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 44.6999999997206,
+              "q1": 42.35000000009313,
+              "q3": 47.300000000046566,
+              "min": 41.09999999962747,
+              "max": 59.60000000009313,
+              "n": 7
+            }
+          },
+          "patched": {
+            "domTotal": {
+              "median": 4000,
+              "q1": 4000,
+              "q3": 4000,
+              "min": 4000,
+              "max": 4000,
+              "n": 7
+            },
+            "scriptMs": {
+              "median": 30.299999999813735,
+              "q1": 26.050000000046566,
+              "q3": 37.99999999953434,
+              "min": 21.899999999906868,
+              "max": 42.799999999813735,
+              "n": 7
+            },
+            "layoutDurationMs": {
+              "median": 0.944,
+              "q1": 0.6225,
+              "q3": 1.1055000000000001,
+              "min": 0.488,
+              "max": 1.2830000000000001,
+              "n": 7
+            },
+            "recalcStyleDurationMs": {
+              "median": 0.055,
+              "q1": 0.045,
+              "q3": 0.0655,
+              "min": 0.04,
+              "max": 0.096,
+              "n": 7
+            },
+            "maxGap": {
+              "median": 21,
+              "q1": 18.350000000093132,
+              "q3": 28.100000000093132,
+              "min": 15.799999999813735,
+              "max": 33.799999999813735,
+              "n": 7
+            }
+          },
+          "ratio": {
+            "domTotal": 0.2857142857142857,
+            "scriptMs": 0.4502228826136344,
+            "layoutDurationMs": 0.01461549180200963,
+            "recalcStyleDurationMs": 0.0013310423271460034,
+            "maxGap": 0.4697986577210573
+          },
+          "iqrSeparated": {
+            "domTotal": true,
+            "scriptMs": true,
+            "layoutDurationMs": true,
+            "recalcStyleDurationMs": true,
+            "maxGap": true
+          }
+        }
+      }
+    }
+  },
+  "arms": {
+    "upstream": {
+      "n": 2000,
+      "steps": {
+        "search_a": {
+          "domMutations": 4000,
+          "toLowerCase": 2001,
+          "valuesCalls": 2001,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "search_an": {
+          "domMutations": 2400,
+          "toLowerCase": 5401,
+          "valuesCalls": 5401,
+          "alphabetSet": 0,
+          "visible": 400
+        },
+        "search_ann": {
+          "domMutations": 400,
+          "toLowerCase": 6001,
+          "valuesCalls": 6001,
+          "alphabetSet": 0,
+          "visible": 0
+        },
+        "search_empty": {
+          "domMutations": 2000,
+          "toLowerCase": 1,
+          "valuesCalls": 1,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "sort_name": {
+          "domMutations": 4000,
+          "toLowerCase": 27808,
+          "valuesCalls": 27808,
+          "alphabetSet": 13904,
+          "visible": 2000
+        },
+        "sort_name_desc": {
+          "domMutations": 4000,
+          "toLowerCase": 4458,
+          "valuesCalls": 4458,
+          "alphabetSet": 2229,
+          "visible": 2000
+        },
+        "filter_city": {
+          "domMutations": 2200,
+          "toLowerCase": 0,
+          "valuesCalls": 2000,
+          "alphabetSet": 0,
+          "visible": 200
+        },
+        "filter_none": {
+          "domMutations": 2200,
+          "toLowerCase": 0,
+          "valuesCalls": 0,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "show_page": {
+          "domMutations": 2100,
+          "toLowerCase": 0,
+          "valuesCalls": 0,
+          "alphabetSet": 0,
+          "visible": 100
+        }
+      }
+    },
+    "A": {
+      "n": 2000,
+      "steps": {
+        "search_a": {
+          "domMutations": 0,
+          "toLowerCase": 2001,
+          "valuesCalls": 2001,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "search_an": {
+          "domMutations": 1600,
+          "toLowerCase": 5401,
+          "valuesCalls": 5401,
+          "alphabetSet": 0,
+          "visible": 400
+        },
+        "search_ann": {
+          "domMutations": 400,
+          "toLowerCase": 6001,
+          "valuesCalls": 6001,
+          "alphabetSet": 0,
+          "visible": 0
+        },
+        "search_empty": {
+          "domMutations": 2000,
+          "toLowerCase": 1,
+          "valuesCalls": 1,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "sort_name": {
+          "domMutations": 1796,
+          "toLowerCase": 27808,
+          "valuesCalls": 27808,
+          "alphabetSet": 13904,
+          "visible": 2000
+        },
+        "sort_name_desc": {
+          "domMutations": 1800,
+          "toLowerCase": 4458,
+          "valuesCalls": 4458,
+          "alphabetSet": 2229,
+          "visible": 2000
+        },
+        "filter_city": {
+          "domMutations": 1800,
+          "toLowerCase": 0,
+          "valuesCalls": 2000,
+          "alphabetSet": 0,
+          "visible": 200
+        },
+        "filter_none": {
+          "domMutations": 1800,
+          "toLowerCase": 0,
+          "valuesCalls": 0,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "show_page": {
+          "domMutations": 1900,
+          "toLowerCase": 0,
+          "valuesCalls": 0,
+          "alphabetSet": 0,
+          "visible": 100
+        }
+      }
+    },
+    "AB": {
+      "n": 2000,
+      "steps": {
+        "search_a": {
+          "domMutations": 0,
+          "toLowerCase": 2001,
+          "valuesCalls": 2001,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "search_an": {
+          "domMutations": 1600,
+          "toLowerCase": 3401,
+          "valuesCalls": 2001,
+          "alphabetSet": 0,
+          "visible": 400
+        },
+        "search_ann": {
+          "domMutations": 400,
+          "toLowerCase": 601,
+          "valuesCalls": 2001,
+          "alphabetSet": 0,
+          "visible": 0
+        },
+        "search_empty": {
+          "domMutations": 2000,
+          "toLowerCase": 1,
+          "valuesCalls": 1,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "sort_name": {
+          "domMutations": 1796,
+          "toLowerCase": 27808,
+          "valuesCalls": 27808,
+          "alphabetSet": 13904,
+          "visible": 2000
+        },
+        "sort_name_desc": {
+          "domMutations": 1800,
+          "toLowerCase": 4458,
+          "valuesCalls": 4458,
+          "alphabetSet": 2229,
+          "visible": 2000
+        },
+        "filter_city": {
+          "domMutations": 1800,
+          "toLowerCase": 0,
+          "valuesCalls": 2000,
+          "alphabetSet": 0,
+          "visible": 200
+        },
+        "filter_none": {
+          "domMutations": 1800,
+          "toLowerCase": 0,
+          "valuesCalls": 0,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "show_page": {
+          "domMutations": 1900,
+          "toLowerCase": 0,
+          "valuesCalls": 0,
+          "alphabetSet": 0,
+          "visible": 100
+        }
+      }
+    },
+    "ABC": {
+      "n": 2000,
+      "steps": {
+        "search_a": {
+          "domMutations": 0,
+          "toLowerCase": 2001,
+          "valuesCalls": 2001,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "search_an": {
+          "domMutations": 1600,
+          "toLowerCase": 3401,
+          "valuesCalls": 2001,
+          "alphabetSet": 0,
+          "visible": 400
+        },
+        "search_ann": {
+          "domMutations": 400,
+          "toLowerCase": 601,
+          "valuesCalls": 2001,
+          "alphabetSet": 0,
+          "visible": 0
+        },
+        "search_empty": {
+          "domMutations": 2000,
+          "toLowerCase": 1,
+          "valuesCalls": 1,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "sort_name": {
+          "domMutations": 1796,
+          "toLowerCase": 27808,
+          "valuesCalls": 27808,
+          "alphabetSet": 1,
+          "visible": 2000
+        },
+        "sort_name_desc": {
+          "domMutations": 1800,
+          "toLowerCase": 4458,
+          "valuesCalls": 4458,
+          "alphabetSet": 1,
+          "visible": 2000
+        },
+        "filter_city": {
+          "domMutations": 1800,
+          "toLowerCase": 0,
+          "valuesCalls": 2000,
+          "alphabetSet": 0,
+          "visible": 200
+        },
+        "filter_none": {
+          "domMutations": 1800,
+          "toLowerCase": 0,
+          "valuesCalls": 0,
+          "alphabetSet": 0,
+          "visible": 2000
+        },
+        "show_page": {
+          "domMutations": 1900,
+          "toLowerCase": 0,
+          "valuesCalls": 0,
+          "alphabetSet": 0,
+          "visible": 100
+        }
+      }
+    }
+  }
+}
