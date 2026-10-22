@@ -83,7 +83,8 @@ patches/        unified diff vs v2.3.1 (-p1, LF)
 bench/          Playwright + CDP benchmark, aggregator
 probe/          counters, differential harness, arm builder
 results/        summary.json + raw samples
-docs/figures/   charts
+docs/figures/   charts, regenerated from results/summary.json
+figs/           chart generator + pixel-level self-check
 REPORT.md       full write-up (Chinese)
 NOTICE.md       change declaration
 ```

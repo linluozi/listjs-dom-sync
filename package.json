@@ -50,7 +50,9 @@
     "bench:summary": "node bench/summarize.cjs",
     "count": "node probe/count.cjs --src . --n 2000 --label patched --out out/patched_2000.json",
     "equiv": "node probe/equivalence.cjs --src . --out out/eq_patched.json",
-    "arms": "node probe/make_arms.cjs"
+    "arms": "node probe/make_arms.cjs",
+    "figs": "python figs/make_figs.py",
+    "figs:check": "python figs/check_figs.py"
   },
   "npmName": "list.js",
   "npmFileMap": [
